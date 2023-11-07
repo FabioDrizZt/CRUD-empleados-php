@@ -1,7 +1,3 @@
-<?php
-require_once('./bd.php');
-?>
-
 <!doctype html>
 <html lang="es">
 
