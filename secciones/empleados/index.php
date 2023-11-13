@@ -32,11 +32,9 @@
                 <a class="btn btn-danger" href="#" role="button">Eliminar</a>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 </main>

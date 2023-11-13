@@ -40,6 +40,8 @@
             <option value="3">Fullstack</option>
           </select>
         </div>
+        <a class="btn btn-danger" href="index.php" role="button">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Agregar</button>
       </form>
     </div>
   </div>
