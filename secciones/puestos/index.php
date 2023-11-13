@@ -1,11 +1,7 @@
 <?php require_once('../../bd.php');
-$sentencia = $conexion->prepare("SELECT * FROM `tbl_puestos`");
-$sentencia->execute();
-$lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-/* echo "<pre>";
-print_r($lista_tbl_puestos);
-echo "</pre>"; */
-
+$sentencia = $conexion->prepare("SELECT * FROM `tbl_puestos`"); // Traer datos desde la BD
+$sentencia->execute(); // Ejecutar la consulta previamente preparada
+$lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC); // Almacenar los datos de manera asociativa
 ?>
 <?php require_once('../../templates/head.php') ?>
 <?php include_once('../../templates/header.php') ?>
