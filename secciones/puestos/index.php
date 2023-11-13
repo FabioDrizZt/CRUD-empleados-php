@@ -1,3 +1,12 @@
+<?php require_once('../../bd.php');
+$sentencia = $conexion->prepare("SELECT * FROM `tbl_puestos`");
+$sentencia->execute();
+$lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+/* echo "<pre>";
+print_r($lista_tbl_puestos);
+echo "</pre>"; */
+
+?>
 <?php require_once('../../templates/head.php') ?>
 <?php include_once('../../templates/header.php') ?>
 <main class="container">
@@ -16,20 +25,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="">
-            <td scope="row">1</td>
-            <td>Desarrollador Full Stack</td>
-            <td><a class="btn btn-info" href="editar.php" role="button">Editar</a>
-              <a class="btn btn-danger" href="#" role="button">Eliminar</a>
-            </td>
-          </tr>
-          <tr class="">
-            <td scope="row">2</td>
-            <td>Desarrollador Front end</td>
-            <td><a class="btn btn-info" href="editar.php" role="button">Editar</a>
-              <a class="btn btn-danger" href="#" role="button">Eliminar</a>
-            </td>
-          </tr>
+          <?php foreach ($lista_tbl_puestos as $registro) { ?>
+            <tr class="">
+              <td scope="row"><?= $registro['id'] ?></td>
+              <td><?= $registro['nombredelpuesto'] ?> </td>
+              <td><a class="btn btn-info" href="editar.php" role="button">Editar</a>
+                <a class="btn btn-danger" href="#" role="button">Eliminar</a>
+              </td>
+            </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>
