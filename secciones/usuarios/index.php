@@ -22,7 +22,7 @@ if (isset($_GET['txtID'])) {
   <div class="table-responsive">
     <div class="card">
       <div class="card-header">
-        <a class="btn btn-primary" href="crear.php" role="button">Agregar puesto</a>
+        <a class="btn btn-primary" href="crear.php" role="button">Agregar Usuario</a>
       </div>
       <table class="table ">
         <thead>
@@ -39,7 +39,7 @@ if (isset($_GET['txtID'])) {
             <tr class="">
               <td scope="row"><?= $registro['id'] ?></td>
               <td><?= $registro['usuario'] ?></td>
-              <td><?= $registro['password'] ?></td>
+              <td>*********</td>
               <td><?= $registro['correo'] ?></td>
               <td>
                 <a class="btn btn-info" href="editar.php?txtID=<?= $registro['id'] ?>" role="button">Editar</a>
