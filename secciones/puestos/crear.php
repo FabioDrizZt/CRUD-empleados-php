@@ -1,3 +1,13 @@
+<?php require_once('../../bd.php');
+if ($_POST) {
+  //Validamos que los datos hayan sido cargado correctamente
+  $nombredelpuesto = (isset($_POST['nombredelpuesto']) ? $_POST['nombredelpuesto'] : "");
+  $sentencia = $conexion->prepare("INSERT INTO `tbl_puestos`(`nombredelpuesto`) VALUES (:nombredelpuesto)"); // Traer datos desde la BD
+  $sentencia->bindParam(":nombredelpuesto", $nombredelpuesto);
+  $sentencia->execute(); // Ejecutar la consulta previamente preparada
+  header("Location:index.php");
+}
+?>
 <?php require_once('../../templates/head.php') ?>
 <?php include_once('../../templates/header.php') ?>
 <main class="container">
