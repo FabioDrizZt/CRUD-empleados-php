@@ -2,9 +2,9 @@
 $sentencia = $conexion->prepare("SELECT * FROM `tbl_puestos`"); // Traer datos desde la BD
 $sentencia->execute(); // Ejecutar la consulta previamente preparada
 $lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC); // Almacenar los datos de manera asociativa
-if ($_GET['txtID']) {
+if (isset($_GET['txtID'])) {
   //Validamos que los datos hayan sido cargado correctamente
-  $txtID = (isset($_GET['txtID']) ? $_GET['txtID'] : "");
+  $txtID = $_GET['txtID'];
   $sentencia = $conexion->prepare("DELETE FROM `tbl_puestos` WHERE `id`=:id"); // Traer datos desde la BD
   $sentencia->bindParam(":id", $txtID);
   try {
@@ -38,7 +38,7 @@ if ($_GET['txtID']) {
               <td scope="row"><?= $registro['id'] ?></td>
               <td><?= $registro['nombredelpuesto'] ?> </td>
               <td>
-                <a class="btn btn-info" href="editar.php" role="button">Editar</a>
+                <a class="btn btn-info" href="editar.php?txtID=<?= $registro['id'] ?>" role="button">Editar</a>
                 <a class="btn btn-danger" href="index.php?txtID=<?= $registro['id'] ?>" role="button">Eliminar</a>
               </td>
             </tr>
