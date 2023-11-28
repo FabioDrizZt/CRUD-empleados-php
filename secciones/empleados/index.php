@@ -7,6 +7,22 @@ $lista_tbl_empleados = $sentencia->fetchAll(PDO::FETCH_ASSOC); // Almacenar los 
 if (isset($_GET['txtID'])) {
   //Validamos que los datos hayan sido cargado correctamente
   $txtID = $_GET['txtID'];
+  //buscamos el nombre de los archivos en la BD
+  $sentencia = $conexion->prepare("SELECT `foto`,`cv` FROM `tbl_empleados` WHERE id=:id"); // Traer datos desde la BD
+  $sentencia->bindParam(":id", $txtID);
+  $sentencia->execute(); // Ejecutar la consulta previamente preparada
+  $registro = $sentencia->fetch(PDO::FETCH_LAZY); // Almacenar los datos de manera asociativaz
+
+  //preguntamos si existe el nombre de los archivos en la BD
+  if (isset($registro["foto"]) || isset($registro["cv"])) {
+    if (file_exists('./images/'.$registro["foto"])) { // preguntamos si existe el archivo en el server
+      unlink('./images/'.$registro["foto"]); // borramos el archivo del server
+    }
+    if (file_exists('./documents/'.$registro["cv"])) { // preguntamos si existe el archivo en el server
+      unlink('./documents/'.$registro["cv"]); // borramos el archivo del server
+    }
+  }
+
   $sentencia = $conexion->prepare("DELETE FROM `tbl_empleados` WHERE `id`=:id"); // Traer datos desde la BD
   $sentencia->bindParam(":id", $txtID);
   try {
@@ -44,8 +60,12 @@ if (isset($_GET['txtID'])) {
               <tr class="">
                 <td scope="row"><?= $registro['id'] ?></td>
                 <td scope="row"><?= $registro['primernombre'] . " " . $registro['segundonombre'] . " " . $registro['primerapellido'] . " " . $registro['segundoapellido'] ?></td>
-                <td><?= $registro['foto'] ?></td>
-                <td><?= $registro['cv'] ?></td>
+                <td>
+                  <img src=<?= './images/' . $registro['foto'] ?> class="img-fluid rounded" width=250 alt="foto del empleado">
+                </td>
+                <td>
+                  <a download href=<?= './documents/' . $registro['cv'] ?>>CV</a>
+                </td>
                 <td><?= $registro['puesto'] ?></td>
                 <td><?= $registro['fechadeingreso'] ?></td>
                 <td>
