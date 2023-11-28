@@ -25,11 +25,10 @@ if ($_POST) {
   $sentencia->bindParam(":segundoapellido", $segundoapellido);
   $sentencia->bindParam(":idpuesto", $idpuesto);
 
-  //generanos un nombre unico
+  //generamos un nombre unico
   $fecha = new DateTime();
   $foto = ($foto != '') ? $fecha->getTimestamp() . "_" . $foto : '';
   $cv = ($cv != '') ? $fecha->getTimestamp() . "_" . $cv : '';
-
   // Guardamos la foto en nuestro servidor
   $tmp_foto = $_FILES['foto']['tmp_name'];
   if ($tmp_foto != '') {
