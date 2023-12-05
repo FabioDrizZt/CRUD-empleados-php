@@ -20,7 +20,7 @@ if ($_POST) {
   $sentencia->bindParam(":id", $id);
   try {
     $sentencia->execute(); // Ejecutar la consulta previamente preparada
-    header("Location:index.php");
+    header("Location:index.php?mensaje=editado");
   } catch (PDOException $e) {
     echo $e->getMessage();
   }

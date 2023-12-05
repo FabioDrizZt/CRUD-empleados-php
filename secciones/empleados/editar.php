@@ -18,8 +18,6 @@ if ($_POST) {
   $sentencia->execute(); // Ejecutar la consulta previamente preparada
   $registro = $sentencia->fetch(PDO::FETCH_LAZY); // Almacenar los datos de manera asociativaz
 
-
-
   //Validamos que los datos hayan sido cargado correctamente
   $primernombre = (isset($_POST['primernombre']) ? $_POST['primernombre'] : "");
   $segundonombre = (isset($_POST['segundonombre']) ? $_POST['segundonombre'] : "");
@@ -77,7 +75,7 @@ if ($_POST) {
   
   try {
     $sentencia->execute(); // Ejecutar la consulta previamente preparada
-    header("Location:index.php");
+    header("Location:index.php?mensaje=editado");
   } catch (PDOException $e) {
     echo $e->getMessage();
   }
